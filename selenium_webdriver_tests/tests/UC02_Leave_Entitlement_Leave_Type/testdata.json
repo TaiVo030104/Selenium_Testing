@@ -1,0 +1,59 @@
+{
+    "config": {
+        "baseUrl": "http://localhost:9090/web/index.php/leave/viewLeaveBalanceReport",
+        "loginUrl": "http://localhost:9090/web/index.php/auth/login",
+        "username": "Admin",
+        "password": "Tuantaivtt312004@",
+        "waitTime": 50000,
+        "windowSize": {
+            "width": 1280,
+            "height": 800
+        }
+    },
+    "testCases": {
+        "UI01": {
+            "name": "Leave Type Radio Button",
+            "description": "Test click Leave Type Radio Button"
+        },
+        "UI02": {
+            "name": "Generate Sick Leave Report",
+            "description": "Test generate report with Leave Type selected"
+        },
+        "UI03": {
+            "name": "Location Filter",
+            "description": "Test Location filter with Leave Type"
+        },
+        "UI04": {
+            "name": "Sub Unit Filter",
+            "description": "Test Sub Unit filter with Leave Type"
+        },
+        "UI05": {
+            "name": "Job Title Filter",
+            "description": "Test Job Title filter with Leave Type"
+        },
+        "UI06": {
+            "name": "Multiple Filters",
+            "description": "Test multiple filters combined"
+        },
+        "UI07": {
+            "name": "Include Past Employees ON",
+            "description": "Test with Include Past Employees enabled"
+        },
+        "UI08": {
+            "name": "Include Past Employees OFF",
+            "description": "Test with Include Past Employees disabled (default)"
+        },
+        "UI09": {
+            "name": "Generate with Required Fields",
+            "description": "Test generate with only required fields"
+        },
+        "UI10": {
+            "name": "Validation Error Without Leave Type",
+            "description": "Test validation when Leave Type is not selected"
+        },
+        "UI11": {
+            "name": "Leave type with no employees",
+            "description": "Verify that selecting a leave type with no assigned employees displays No Records Found message without errors"
+        }
+    }
+}

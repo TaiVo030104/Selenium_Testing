@@ -1,0 +1,42 @@
+{
+    "config": {
+        "baseUrl": "http://localhost:9090/web/index.php/leave/viewLeaveBalanceReport",
+        "loginUrl": "http://localhost:9090/web/index.php/auth/login",
+        "username": "Admin",
+        "password": "Tuantaivtt312004@",
+        "waitTime": 50000,
+        "windowSize": {
+            "width": 1280,
+            "height": 800
+        }
+    },
+    "testCases": {
+        "UI01": {
+            "name": "Employee Name Radio Button",
+            "description": "Verify that selecting the Employee radio button correctly changes the form to show Employee Name autocomplete field"
+        },
+        "UI02": {
+            "name": "Validation Error Without Employee Name",
+            "description": "Verify that attempting to generate a report without selecting an employee displays validation error message"
+        },
+        "UI03": {
+            "name": "Leave Period default",
+            "description": "Verify that the Leave Period field is automatically populated with a default date range when the page loads"
+        },
+        "UI04": {
+            "name": "Employee with no entitlements",
+            "input": "test",
+            "description": "Verify system behavior when generating a report for an employee who has no leave entitlements"
+        },
+        "UI05": {
+            "name": "Special chars in name",
+            "input": "O'Brien",
+            "description": "Verify that employee names containing special characters are correctly displayed in the report"
+        },
+        "UI06": {
+            "name": "Full name with all leave types",
+            "input": "Michael Johnson",
+            "description": "Verify that typing and selecting an employee's full name generates a complete report showing all leave types"
+        }
+    }
+}

@@ -1,0 +1,150 @@
+{
+    "config": {
+        "baseUrl": "http://localhost:9090/web/index.php/performance/searchEvaluatePerformanceReview",
+        "loginUrl": "http://localhost:9090/web/index.php/auth/login",
+        "username": "Admin",
+        "password": "Tuantaivtt312004@",
+        "waitTime": 50000,
+        "browser": "MicrosoftEdge",
+        "windowSize": {
+            "width": 1552,
+            "height": 832
+        }
+    },
+    "testCases": {
+        "UI01": {
+            "name": "Search with valid employee name",
+            "input": "John",
+            "description": "Verify that the search function correctly retrieves performance reviews when a valid employee name is entered"
+        },
+        "UI02": {
+            "name": "Input numeric value in employee name field",
+            "input": "12345",
+            "description": "Verify that the system accepts numeric characters in the Employee Name field"
+        },
+        "UI03": {
+            "name": "Input special character (@)",
+            "input": "@John",
+            "description": "Verify that special characters in the Employee Name field are properly handled during search"
+        },
+        "UI04": {
+            "name": "Input 100 characters string",
+            "input": "abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij",
+            "description": "Verify that the Employee Name field accepts the maximum allowed length of 100 characters"
+        },
+        "UI05": {
+            "name": "Input very long string (>150 characters)",
+            "input": "abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "description": "Verify that the system displays appropriate validation error when Employee Name exceeds 100 characters"
+        },
+        "UI06": {
+            "name": "Search with empty field",
+            "input": "",
+            "description": "Verify that leaving the Employee Name field empty returns all performance reviews without filtering"
+        },
+        "UI07": {
+            "name": "Input whitespace characters",
+            "input": "                ",
+            "description": "Verify that entering only whitespace characters in Employee Name field is properly validated",
+            "expectValidationError": true
+        },
+        "UI08": {
+            "name": "SQL Injection test",
+            "input": "' OR '1'='1",
+            "description": "Verify that SQL injection attempts are properly sanitized"
+        },
+        "UI09": {
+            "name": "XSS Attack test",
+            "input": "<script>alert('XSS')</script>",
+            "description": "Verify that JavaScript/HTML script tags are escaped and not executed"
+        },
+        "UI10": {
+            "name": "Input Vietnamese Unicode characters",
+            "input": "Nguyễn Văn Á",
+            "description": "Verify that the system correctly handles Vietnamese characters with diacritics",
+            "expectValidationError": true
+        },
+        "UI11": {
+            "name": "Click Review Period dropdown",
+            "input": "",
+            "description": "Verify that selecting a specific Job Title from the dropdown filters performance reviews"
+        },
+        "UI12": {
+            "name": "Job Title filter",
+            "jobTitle": "Sales Manager",
+            "description": "Verify that selecting a specific Job Title filters reviews to show only employees with that job title"
+        },
+        "UI13": {
+            "name": "Sub Unit filter",
+            "subUnit": "Sales",
+            "description": "Verify that selecting a Sub Unit filters reviews to show only employees in that organizational unit"
+        },
+        "UI14": {
+            "name": "Review Status filter",
+            "reviewStatus": "Activated",
+            "description": "Verify that selecting a Review Status filters reviews to show only reviews in that specific status"
+        },
+        "UI15": {
+            "name": "Date range YYYY-MM-DD",
+            "fromDate": "2024-01-01",
+            "toDate": "2024-03-31",
+            "description": "Verify that entering dates in correct YYYY-MM-DD format successfully filters performance reviews"
+        },
+        "UI16": {
+            "name": "Invalid date format",
+            "fromDate": "01/01/2024",
+            "toDate": "31/03/2024",
+            "expectValidationError": true,
+            "description": "Verify that entering dates in incorrect format triggers validation error"
+        },
+        "UI17": {
+            "name": "Invalid date (Feb 30)",
+            "fromDate": "2024-02-30",
+            "expectValidationError": true,
+            "description": "Verify that entering non-existent dates triggers appropriate validation error"
+        },
+        "UI18": {
+            "name": "From Date > To Date validation",
+            "fromDate": "2024-06-30",
+            "toDate": "2024-01-01",
+            "expectValidationError": true,
+            "description": "Verify that entering a From Date later than To Date triggers validation error"
+        },
+        "UI19": {
+            "name": "Same From/To Date",
+            "fromDate": "2024-03-15",
+            "toDate": "2024-03-15",
+            "description": "Verify that entering identical From Date and To Date successfully searches for reviews on that single date"
+        },
+        "UI20": {
+            "name": "Future dates",
+            "fromDate": "2030-03-10",
+            "toDate": "2030-03-10",
+            "description": "Verify system behavior when searching with future dates"
+        },
+        "UI21": {
+            "name": "Only From Date",
+            "fromDate": "2025-01-01",
+            "toDate": "",
+            "description": "Verify that entering only From Date searches from that date to system-determined end date"
+        },
+        "UI22": {
+            "name": "Only To Date",
+            "fromDate": "",
+            "toDate": "2025-06-30",
+            "description": "Verify that entering only To Date searches from system-determined start date to specified To Date"
+        },
+        "UI23": {
+            "name": "Leap year Feb 29",
+            "fromDate": "2024-02-29",
+            "toDate": "2024-03-01",
+            "description": "Verify that the system correctly handles February 29 in leap years as a valid date"
+        },
+        "UI24": {
+            "name": "Partial name search",
+            "input": "Joh",
+            "expectValidationError": true,
+            "description": "Verify that entering a partial employee name returns validation error (no employee named 'Joh')"
+        }
+    }
+}
